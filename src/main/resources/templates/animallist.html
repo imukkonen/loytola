@@ -56,21 +56,13 @@ h5 {font-family: "Tangerine", serif}
 </div>
 <!---  Sivun sisältö -->
 	
-<div class="w3-center w3-padding-32 w3-text-blue" style="margin-top:80px; margin-bottom:0">
-	<div class="w3-row">
-		<div class="w3-col m8 l9">
-			<h5 class="w3-xxxlarge">Kaikki eläimet</h5>
-		</div>
-		<div class="w3-col m4 l3">
-			<div sec:authorize="isAuthenticated()" >
-				<h5 class="w3-xxxlarge" th:inline="text">Tervetuloa [[${#httpServletRequest.remoteUser}]]</h5>
-		</div>
-		</div>
-	</div>
-	  <br />
+<div class="w3-center w3-padding-64" style="margin-top:80px; margin-bottom:0">
+	
+			<h5 class="w3-xxxlarge w3-text-indigo">Kaikki eläimet</h5>
+		 <br />
 	<div class="w3-responsive">
       <table class="w3-table  w3-bordered w3-small" style="width:90%; margin:0 auto;">
-		<tr class="w3-grey">
+		<tr class=" w3-center w3-teema-d1 w3-indigo">
 		    <th>Asia</th>
 		    <th>Tunnus</th>
 		    <th>Eläin laji</th>
@@ -90,7 +82,7 @@ h5 {font-family: "Tangerine", serif}
 		    <th></th>
 		    	
 		</tr>  
-    	<tr th:each = "animal : ${animals}">
+    	<tr class="w3-myfont" th:each = "animal : ${animals}">
     		<td><span th:if="${animal.theme}==0">Kadonnut</span>
     			<span th:if="${animal.theme}==1">Löytänyt</span></td>
     		<td th:text="${animal.name}"></td>
