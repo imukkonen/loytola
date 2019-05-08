@@ -31,7 +31,7 @@ h5 {font-family: "Tangerine", serif}
   	<a href="/acceptanimallist" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Löydetyt eläimet</a>
   	<a href="/acceptdisappearlist" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Kadotetut eläimet</a>
   </div>
-  <a href="/find" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Hae tyypillä</a>
+  <a href="/find" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Hae lajilla</a>
   <a href="/addanimal" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Uusi eläin</a>
   <div sec:authorize="isAnonymous()">
   	<a href="/login" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Kirjaudu sisään</a>
@@ -45,7 +45,7 @@ h5 {font-family: "Tangerine", serif}
 </nav>
 
 <!-- Ylävalikko -->
-<div class="w3-top w3-opacity">
+<div class="w3-top ">
   <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
     <div class="w3-button w3-padding-16	w3-right" onclick="w3_open()">☰</div>
     <div class="w3-left w3-padding-12"  onclick="w3_open()"><img src="pictures/logo.jpg" alt="Logo" style="display:block;margin:auto" width="100" height="90"></div>
@@ -73,7 +73,7 @@ h5 {font-family: "Tangerine", serif}
 		<tr class="w3-grey">
 		    <th>Asia</th>
 		    <th>Tunnus</th>
-		    <th>Eläin laiji</th>
+		    <th>Eläin laji</th>
 		    <th>Rotu</th>
 		    <th>Sukupuoli</th>
 		    <th>Kuvaus</th>
@@ -83,9 +83,9 @@ h5 {font-family: "Tangerine", serif}
 		    	<th>Puhelin</th>
 		    </div>
 		    <th sec:authorize="hasAuthority('ADMIN')">Status</th>
-		    <th>Sijoituspaikka</th>
-		    <th>Lähtöpäivä</th>
-		    <th>Lähdön syy</th>
+		    <th sec:authorize="hasAuthority('ADMIN')">Sijoituspaikka</th>
+		    <th sec:authorize="hasAuthority('ADMIN')">Lähtöpäivä</th>
+		    <th sec:authorize="hasAuthority('ADMIN')">Lähdön syy</th>
 		    <th></th>
 		    <th></th>
 		    	

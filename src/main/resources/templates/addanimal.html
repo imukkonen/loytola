@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>New animal</title>
+    <title>Uusi eläin</title>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -45,7 +45,7 @@ label {	display: inline-block;
   	<a href="/acceptanimallist" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Löydetyt eläimet</a>
   	<a href="/acceptdisappearlist" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Kadotetut eläimet</a>
   </div>
-  <a href="/find" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Hae tyypillä</a>
+  <a href="/find" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Hae lajilla</a>
   <a href="/addanimal" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Uusi eläin</a>
   <div sec:authorize="isAnonymous()">
   	<a href="/login" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Kirjaudu sisään</a>
@@ -85,9 +85,9 @@ label {	display: inline-block;
 		  	<label for="name">Eläinten nimi (tunnus)</label>
 		  	<input  type="text" id="name" th:field="*{name}" />
 			<div style="clear: both; display: block; height: 10px;"></div>
-			<label for="animalKindlist">Eläimen laiji</label>
+			<label for="animalKindlist">Eläimen laji</label>
 			<select  id="animalKindlist" th:field="*{animalKind}" style="width:300px;">
-       		<option th:each="animalKind: ${animalKinds}" th:value="${animalKind.animalKindId}" th:text="${animalKind.name}"></option>
+			<option th:each="animalKind: ${animalKinds}" th:value="${animalKind.animalKindId}" th:text="${animalKind.name}"></option>
     		</select>
 			<div  style="clear: both; display: block; height: 10px;"></div>
 			<label for="breed">Rotu</label>

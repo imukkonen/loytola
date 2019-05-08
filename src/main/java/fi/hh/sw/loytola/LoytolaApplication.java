@@ -82,9 +82,9 @@ private static final Logger log = LoggerFactory.getLogger(LoytolaApplication.cla
 			brepository.save(new Breed("Popukaija"));
 			brepository.save(new Breed("Belgianjätti"));
 			
-			srepository.save(new Sex("uros"));
-			srepository.save(new Sex("naaras"));
-			srepository.save(new Sex("epäselvä")); 
+			srepository.save(new Sex("Uros"));
+			srepository.save(new Sex("Naaras"));
+			srepository.save(new Sex("Epäselvä")); 
 			
 			drepository.save(new DepartureCause("Vanha omistaja löytynyt"));
 			drepository.save(new DepartureCause("Uusi omistaja löytynyt"));
@@ -92,14 +92,14 @@ private static final Logger log = LoggerFactory.getLogger(LoytolaApplication.cla
 			
 			Date dd = df.parse("23-04-2019");
 			
-			arepository.save(new Animal("Koira2019-1","musta värinen, arvioitu noin 3 vuotta vanha, valkoinen kaulus", dd, akrepository.findByName("Koira").get(0), rrepository.findByName("PK-1").get(0), brepository.findByName("Mopsi").get(0), srepository.findByName("naaras").get(0)));
-			arepository.save(new Animal("Kissa2019-1","musta värinen, arvioitu noin 3 vuotta vanha, valkoinen kaulus", dd, akrepository.findByName("Kissa").get(0), rrepository.findByName("K-1").get(0), brepository.findByName("Persi").get(0), srepository.findByName("naaras").get(0)));
-			arepository.save(new Animal("Kani2019-1","valkoinen, massiivinen, korkea ja pitkärunkoinen kani isoilla korvilla, noin 7 kg", dd, akrepository.findByName("Kani").get(0), rrepository.findByName("Kk-1").get(0), brepository.findByName("Belgianjätti").get(0), srepository.findByName("epäselvä").get(0)));
-			arepository.save(new Animal("Jyrsijä2019-1","ruskea, arvioitu noin 2 vuotta vanha, painaa noin 1,8 kg.", dd, akrepository.findByName("Jyrsijä").get(0), rrepository.findByName("J-1").get(0), brepository.findByName("Marsu").get(0), srepository.findByName("naaras").get(0)));
-			arepository.save(new Animal("Matelija2019-1","kotikilpikonna, arvon mukaan noin 10 vuotta vanha", dd, akrepository.findByName("Matelija").get(0), rrepository.findByName("M-1").get(0), brepository.findByName("Kilpikonna").get(0), srepository.findByName("epäselvä").get(0)));
-			arepository.save(new Animal("Lintu2019-1","vihreä-keltainen, terve ja hyvinvoiva papukaija, arvioitu noin 5 vuotta vanha, osaa sanoa 'terve'", dd, akrepository.findByName("Lintu").get(0), rrepository.findByName("L-1").get(0), brepository.findByName("Popukaija").get(0), srepository.findByName("uros").get(0)));
-			arepository.save(new Animal("Jyrsijä2019-2","harmahtava, suuret kovat ja pitkä karvainen häntä jonka päässä on tupsumaista karvaa, noin 8cm pitkä, ruumis  noin 7cm, ruumiin karva on melko pitkää ja pehmeää, vatsapuoli on vaalea,4 vuotta vanha", dd, akrepository.findByName("Jyrsijä").get(0), rrepository.findByName("J-1").get(0), brepository.findByName("Hiirihamsteri").get(0), srepository.findByName("uros").get(0)));
-			arepository.save(new Animal("Jyrsijä2019-3","ruskea, painaa 60 g, sen ruumis on 13 cm pitkä ja tuuhea häntä on lähes yhtä pitkä, selässä kulkee pituussuunnassa viisi mustaa raitaa hiekanruskealla pohjalla, vatsapuoli on vaalea", dd, akrepository.findByName("Jyrsijä").get(0), rrepository.findByName("J-2").get(0), brepository.findByName("Siperian maaorava").get(0), srepository.findByName("uros").get(0)));
+			arepository.save(new Animal("Koira2019-1","musta värinen, arvioitu noin 3 vuotta vanha, valkoinen kaulus", dd, akrepository.findByName("Koira").get(0), rrepository.findByName("PK-1").get(0), brepository.findByName("Mopsi").get(0), srepository.findByName("Naaras").get(0)));
+			arepository.save(new Animal("Kissa2019-1","musta värinen, arvioitu noin 3 vuotta vanha, valkoinen kaulus", dd, akrepository.findByName("Kissa").get(0), rrepository.findByName("K-1").get(0), brepository.findByName("Persi").get(0), srepository.findByName("Naaras").get(0)));
+			arepository.save(new Animal("Kani2019-1","valkoinen, massiivinen, korkea ja pitkärunkoinen kani isoilla korvilla, noin 7 kg", dd, akrepository.findByName("Kani").get(0), rrepository.findByName("Kk-1").get(0), brepository.findByName("Belgianjätti").get(0), srepository.findByName("Epäselvä").get(0)));
+			arepository.save(new Animal("Jyrsijä2019-1","ruskea, arvioitu noin 2 vuotta vanha, painaa noin 1,8 kg.", dd, akrepository.findByName("Jyrsijä").get(0), rrepository.findByName("J-1").get(0), brepository.findByName("Marsu").get(0), srepository.findByName("Naaras").get(0)));
+			arepository.save(new Animal("Matelija2019-1","kotikilpikonna, arvon mukaan noin 10 vuotta vanha", dd, akrepository.findByName("Matelija").get(0), rrepository.findByName("M-1").get(0), brepository.findByName("Kilpikonna").get(0), srepository.findByName("Epäselvä").get(0)));
+			arepository.save(new Animal("Lintu2019-1","vihreä-keltainen, terve ja hyvinvoiva papukaija, arvioitu noin 5 vuotta vanha, osaa sanoa 'terve'", dd, akrepository.findByName("Lintu").get(0), rrepository.findByName("L-1").get(0), brepository.findByName("Popukaija").get(0), srepository.findByName("Uros").get(0)));
+			arepository.save(new Animal("Jyrsijä2019-2","harmahtava, suuret kovat ja pitkä karvainen häntä jonka päässä on tupsumaista karvaa, noin 8cm pitkä, ruumis  noin 7cm, ruumiin karva on melko pitkää ja pehmeää, vatsapuoli on vaalea,4 vuotta vanha", dd, akrepository.findByName("Jyrsijä").get(0), rrepository.findByName("J-1").get(0), brepository.findByName("Hiirihamsteri").get(0), srepository.findByName("Uros").get(0)));
+			arepository.save(new Animal("Jyrsijä2019-3","ruskea, painaa 60 g, sen ruumis on 13 cm pitkä ja tuuhea häntä on lähes yhtä pitkä, selässä kulkee pituussuunnassa viisi mustaa raitaa hiekanruskealla pohjalla, vatsapuoli on vaalea", dd, akrepository.findByName("Jyrsijä").get(0), rrepository.findByName("J-2").get(0), brepository.findByName("Siperian maaorava").get(0), srepository.findByName("Uros").get(0)));
 			
 			
 			// Create users: admin/adminadmin user/useruser
