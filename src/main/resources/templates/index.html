@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Löytölä</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+
+<style>
+body,h1,h2,h3,h4,h6 {font-family: "Karma", sans-serif}
+h5 {font-family: "Tangerine", serif}
+.w3-bar-block .w3-bar-item {padding:20px}
+.w3-myfont {font-family: "Comic Sans MS", cursive, sans-serif}
+.w3-teema-d1 {color:#fff !important;background-color:#3949ab !important}
+
+</style>
+</head>
+
+<body>
+
+<!-- Sivupalkki (piilotettu oletuksena) -->
+<nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-right" style="display:none;z-index:2;width:20%;right:0" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()"
+  class="w3-bar-item w3-button">Sulje valikko</a>
+  <a href="/index" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Pääsivu</a>
+  <div sec:authorize="isAuthenticated()">	
+  	<a href="/animallist" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Kaikki eläimet</a>
+  	<a href="/roomlist" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Kaikki sjoituspaikat</a>
+  </div>
+  <div sec:authorize="isAnonymous()">
+  	<a href="/acceptanimallist" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Löydetyt eläimet</a>
+  	<a href="/acceptdisappearlist" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Kadotetut eläimet</a>
+  </div>
+  <a href="/find" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Hae tyypillä</a>
+  <a href="/addanimal" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Uusi eläin</a>
+  <div sec:authorize="isAnonymous()">
+  	<a href="/login" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Kirjaudu sisään</a>
+  </div>
+  <div sec:authorize="isAuthenticated()">
+  	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Kirjaudu ulos" class="w3-bar-item w3-button w3-teema-d1"/>
+	</form>
+  </div>
+ 
+</nav>
+
+<!-- Ylävalikko -->
+<div class="w3-top">
+  <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
+    <div class="w3-button w3-padding-16	w3-right" onclick="w3_open()">☰</div>
+    <div class="w3-left w3-padding-12"  onclick="w3_open()"><img src="pictures/logo.jpg" alt="Logo" style="display:block;margin:auto" width="100" height="90"></div>
+    <div class="w3-center w3-padding-12 w3-jumbo"><b>Löytöeläinkoti</b>
+    </div>
+	<div class="w3-center w3-padding-12 w3-medium w3-teema-d1"><b>Pääkaupunkiseudun löytöeläimet</b></div>
+  </div>
+</div>
+
+<!-- !SIVUN SISÄLTÖ! -->
+	
+  <div class="w3-center w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
+
+<!-- Ensimäinen valokuvakenttä-->
+  <div class=" w3-center w3-row-padding w3-padding-16 " style="max-width:1200px;margin-top:100px"id="paasivu">
+    <div class="w3-quarter">
+      <img src="pictures/cat.jpg" alt="Kissa" style="display:block;margin:auto" width="200" height="150">
+      <h3>KOTIA ETSIVÄ /kissa/ "Alma”</h3>
+	  <h6>12.3.2019</h6>
+      <p>Oranssi-valkoinen naaraskissa Alma tuli Käpälämäkeen Jokioisilta lokakuussa 2018. Varautunut. Uudelta kodilta toivotaan ymmärrystä ja aikaa aralle kissalle. Alma luovutetaan leikattuna rokotettuna, sirutettuna ja madotettuna.</p>
+    </div>
+    <div class="w3-quarter">
+      <img src="pictures/cat_2.jpg" alt="Kissa2" style="display:block;margin:auto" width="200" height="150">
+      <h3>KOTIA ETSIVÄ /kissa/ ”Romeo”</h3>
+	  <h6>10.3.2019</h6>
+      <p>Leikattu kollikissa Romeo talteenotettiin Forssasta lokakuussa 2018. Kesy ja tuttavallinen kissa, kova puskemaan ja viihtyy myös sylissä. Romeo luovutetaan rokotettuna, sirutettuna ja madotettuna.</p>
+    </div>
+	<div class="w3-quarter">
+      <img src="pictures/dog_2.jpg" alt="Koira 2" style="display:block;margin:auto" width="200" height="150">
+      <h3>KADONNUT /koira/ Forssa 3.5.2019</h3>
+	 <h6>3.9.2019</h6>
+      <p>Kadonnut pitkäkarvainen poikakoira Vieremästä 3.9.2019. Pelkää vieraita ihmisiä ja autoja. Liikkuu todennäköisesti Vieremä-Kaikula alueella. Kopioitu Facebook-ilmoituksesta</p>
+    </div>
+    <div class="w3-quarter">
+      <img src="pictures/dog.jpg" alt="Mopsit" style="display:block;margin:auto" width="200" height="150">
+      <h3>TALTEENOTETTU /koira/ Forssa</h3>
+	  <h6>4.5.2019</h6>
+      <p>Kaksi pientä mopsia otettu talteen Jokioisista, Borealin parkkipaikalta. Keneltä kateissa?</p>
+    </div>
+    
+  </div>
+  
+   <!-- Sivutus -->
+  <div class="w3-center" >
+    <div class="w3-bar">
+      <a href="#" class="w3-bar-item w3-button w3-hover-black">«</a>
+      <a href="#" class="w3-bar-item w3-black w3-button">1</a>
+      <a href="#" class="w3-bar-item w3-button w3-hover-black">2</a>
+      <a href="#" class="w3-bar-item w3-button w3-hover-black">3</a>
+      <a href="#" class="w3-bar-item w3-button w3-hover-black">»</a>
+    </div>
+  </div>
+	  
+  <!-- Tietoja osasta -->
+  <div class="w3-container  w3-center" style="max-width:1200px;margin-top:100px"> 
+	<h5 class="w3-center w3-jumbo">Muut kodittomat eläimet</h5><br>
+    <img src="pictures/animals.jpg" alt="Me" class="w3-border w3-padding" style="display:block;margin:auto" width="500" height="200">
+    
+    <div class="w3-center w3-padding-16">
+    
+		<p>Meille tulee vuosittain 100-200 muuta lemmikkiä, joihin kuuluvat kanit, marsut, rotat, kilpikonnat, hiiret, hamsterit, linnut, käärmeet, liskot, hämähäkit ja kaikki mahdolliset mitä ihmiset keksivät lemmikkinään pitää. Näistä vain pieni osa pääsee takaisin omiin koteihinsa. Lähes poikkeuksetta ne jäävät etsimään uutta kotia.</p>
+		<p>Ennen kuin tarjoat kotia eksoottisemmalle eläimelle, varmistuthan että sinulla on tietoa, taitoa, tilaa ja varaa pitää lemmikkiä. Eksoottiset lemmikit tarvitsevat suomen oloissa paljon kekseliäisyyttä, aikaa ja rahallista panostusta, että pystyt järjestämään esimerkiksi mahdollisimman trooppiset olosuhteet. Voidakseen hyvin ne tarvitsevat yllättävän paljon tilaa ja virikkeitä kokoonsa nähden. Eläinlääkäri hoidot ovat kalliita, koska ne yleensä tarvitsevat erikoistuneen eläinlääkärin hoitoa. </p>
+		<p>Tältä sivultamme löydät kaikki meidän tällä hetkellä kotia etsivät muut lemmikit. Otathan yhteyttä sähköpostitse, jos jokin näistä herättää sinussa kiinnostusta. Sähköpostilla voit tiedustella lisätietoja, ajanvaraukset aina puhelimitse.</p>
+		<p>Lomakkeella "Uusi eläin" voit ilmoitta tiedot löytämästä/kadottanusta eläimestä.</p>
+   </div>
+   </div>
+    </div>
+   </div>
+
+  <!-- Alatunniste-->
+  <footer class="w3-center w3-row-padding w3-padding-32  w3-teema-d1" style="margin-top:20px">
+          
+      <p class="w3-myfont">© Löytöeläinkoti Löytölä Ry 2019. All rights reserved</p>
+   
+  </footer>   
+
+  
+ 
+  <!-- loppusivun sisältö -->
+
+
+<script>
+// Script avaa ja sulje sivupalkki
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>New animal</title>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+<style>
+body,h1,h2,h3,h4,h6 {font-family: "Karma", sans-serif}
+h5 {font-family: "Tangerine", serif}
+.w3-bar-block .w3-bar-item {padding:20px}
+.w3-myfont {font-family: "Comic Sans MS", cursive, sans-serif}
+.w3-teema-d1 {color:#fff !important;background-color:#3949ab !important}
+input {
+  width: 50%;
+  hight: 30px;
+}
+label {	display: inline-block;
+				width: 8em;
+				font-family: verdana;
+				font-size: 12px;
+                vertical-align:top;
+                text-align: right;
+				}
+
+</style>
+ 	
+ 	
+
+</head>
+<body>
+	<!-- Sivupalkki (piilotettu oletuksena) -->
+<nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-right" style="display:none;z-index:2;width:20%;right:0" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()"
+  class="w3-bar-item w3-button">Sulje valikko</a>
+  <a href="/index" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Pääsivu</a>
+  <div sec:authorize="isAuthenticated()">	
+  	<a href="/animallist" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Kaikki eläimet</a>
+  	<a href="/roomlist" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Kaikki sjoituspaikat</a>
+  </div>
+  <div sec:authorize="isAnonymous()">
+  	<a href="/acceptanimallist" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Löydetyt eläimet</a>
+  	<a href="/acceptdisappearlist" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Kadotetut eläimet</a>
+  </div>
+  <a href="/find" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Hae tyypillä</a>
+  <a href="/addanimal" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Uusi eläin</a>
+  <div sec:authorize="isAnonymous()">
+  	<a href="/login" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Kirjaudu sisään</a>
+  </div>
+  <div sec:authorize="isAuthenticated()">
+  	<form th:action="@{/logout}" method="post">
+		<input type="submit" value="Kirjaudu ulos" class="w3-bar-item w3-button w3-teema-d1"/>
+	</form>
+  </div>
+ 
+</nav>
+
+<!-- Ylävalikko -->
+<div class="w3-top w3-opacity">
+  <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
+    <div class="w3-button w3-padding-16	w3-right" onclick="w3_open()">☰</div>
+    <div class="w3-left w3-padding-12"  onclick="w3_open()"><img src="pictures/logo.jpg" alt="Logo" style="display:block;margin:auto" width="100" height="90"></div>
+    <div class="w3-center w3-padding-12 w3-jumbo"><b>Löytöeläinkoti</b>
+    </div>
+	<div class="w3-center w3-padding-12 w3-medium w3-teema-d1"><b>Pääkaupunkiseudun löytöeläimet</b></div>
+  </div>
+</div>
+<!---  Sivun sisältö -->
+	
+<div class="w3-center w3-padding-16 w3-text-blue" style="margin-top:80px; margin-bottom:0">
+	<h5 class="w3-xxxlarge">Lisää uusi eläin</h5>
+	<div class="w3-container w3-center" style="margin:0 auto;">
+	<div class="w3-card-4" style="width:50%; margin:0 auto;">
+	<div class="w3-container">
+		<form class="w3-container w3-padding-32" th:object="${animal}" th:action="@{saveanimal}" action="#" method="post">
+		  	<label for="theme">Asia</label>
+		  	<select  id="theme" th:field="*{theme}" style="width:300px;">
+	       		<option th:value=1>Löytänyt</option>
+	       		<option th:value=0>Kadonnut</option>
+    		</select>
+			<div  style="height: 10px;"></div>
+		  	<label for="name">Eläinten nimi (tunnus)</label>
+		  	<input  type="text" id="name" th:field="*{name}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<label for="animalKindlist">Eläimen laiji</label>
+			<select  id="animalKindlist" th:field="*{animalKind}" style="width:300px;">
+       		<option th:each="animalKind: ${animalKinds}" th:value="${animalKind.animalKindId}" th:text="${animalKind.name}"></option>
+    		</select>
+			<div  style="clear: both; display: block; height: 10px;"></div>
+			<label for="breed">Rotu</label>
+			<select  id="breed" th:field="*{breed}"  style="width:300px;">
+       		<option th:each="breed: ${breeds}" th:value="${breed.breedId}" th:text="${breed.name}"></option>
+    		</select>
+			<div  style="clear: both; display: block; height: 10px;"></div>
+			<label for="sexlist">Sukupuoli</label>
+			<select id="sex" th:field="*{sex}"  style="width:300px;">
+       		<option th:each="sex: ${sexs}" th:value="${sex.sexId}" th:text="${sex.name}"></option>
+    		</select>
+			<div  style="clear: both; display: block; height: 10px;"></div>
+			<label for="descriptiot">Kuvaus</label>
+			<textarea cols ="35" rows="3" th:field="*{description}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	<label for="foundDate">Päivä</label>
+			<input type="datetime" th:field="*{foundDate}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+				<label for="uname">Nimesi</label>
+				<input type="text" th:field="*{uname}" />
+				<div style="clear: both; display: block; height: 10px;"></div>
+				<label for="phone">Puhelimesi</label>
+				<input type="text" th:field="*{phone}" />
+				<div style="clear: both; display: block; height: 10px;"></div>
+			
+			<div sec:authorize="hasAuthority('ADMIN')">
+			<label for="roomlist">Sijoituspaikka</label>
+			<select id="roomlist" th:field="*{room}" style="width:300px;">
+       		<option th:each="room: ${rooms}" th:value="${room.roomId}" th:text="${room.name}"></option>
+    		</select>
+			<div  style="clear: both; display: block; height: 10px;"></div>
+			</div>
+			<input class="w3-btn w3-blue w3-round-large" id="button" type="submit" value="Tallenna" style="width:150px; float: center;" ></input>
+		</form>
+	</div>
+	</div>
+	</div>
+	</div>
+ <!-- Alatunniste-->
+  <footer class="w3-center w3-row-padding w3-padding-32  w3-teema-d1" style="margin-top:20px">
+          
+      <p class="w3-myfont">© Löytöeläinkoti Löytölä Ry 2019. All rights reserved</p>
+   
+  </footer>   
+
+  
+ 
+  <!-- loppusivun sisältö -->
+
+
+<script>
+// Script avaa ja sulje sivupalkki
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+}
+ 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+}
+</script>
+</body>
+</html>
