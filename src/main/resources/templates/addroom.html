@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-signal.css">
 <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 <style>
 body,h1,h2,h3,h4,h6 {font-family: "Karma", sans-serif}
@@ -14,22 +15,90 @@ h5 {font-family: "Tangerine", serif}
 .w3-bar-block .w3-bar-item {padding:20px}
 .w3-myfont {font-family: "Comic Sans MS", cursive, sans-serif}
 .w3-teema-d1 {color:#fff !important;background-color:#3949ab !important}
-input {
-  width: 50%;
-  hight: 30px;
+* {
+    box-sizing: border-box;
 }
-label {	display: inline-block;
-				width: 8em;
-				font-family: verdana;
-				font-size: 12px;
-                vertical-align:top;
-                text-align: right;
-				}
 
+input[type=text], input[type=datetime], input[type=number], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+    float: right;
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 50px;
+    width: 65%;
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#logo {
+	font-size: 64px;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+#logo {
+    	font-size: 36px;
+    	margin-bottom: 20px;
+    	padding-top: 20px;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+    #logo {
+    	font-size: 18px;
+    	margin-bottom: 50px;
+    	padding-top: 20px;
+    }
+}
 </style>
- 	
- 	
-
 </head>
 <body>
 	<!-- Sivupalkki (piilotettu oletuksena) -->
@@ -64,7 +133,7 @@ label {	display: inline-block;
   <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
     <div class="w3-button w3-padding-16	w3-right" onclick="w3_open()">☰</div>
     <div class="w3-left w3-padding-12"  onclick="w3_open()"><img src="pictures/logo.jpg" alt="Logo" style="display:block;margin:auto" width="100" height="90"></div>
-    <div class="w3-center w3-padding-12 w3-jumbo"><b>Löytöeläinkoti</b>
+    <div id="logo" class="w3-center w3-padding-12"><b>Löytöeläinkoti</b>
     </div>
 	<div class="w3-center w3-padding-12 w3-medium w3-teema-d1"><b>Pääkaupunkiseudun löytöeläimet</b></div>
   <div sec:authorize="isAuthenticated()" class="w3-small w3-right w3-text-white" style="margin-top:-20px;"  >
@@ -76,33 +145,53 @@ label {	display: inline-block;
 	
 <div class="w3-center w3-padding-64" style="margin-top:80px; margin-bottom:0">
 	<h5 class="w3-jumbo w3-text-indigo">Lisää uusi sijoituspaikan</h5>
-	<div class="w3-left" style="margin-top: -80px; margin-left:80px; padding:20px 20px 0 0">
-				<button class="w3-btn w3-indigo w3-small w3-round-large" onclick="javascript:history.back()">Takaisin</button>
+	<div class="w3-left" style="margin-top: -80px; margin-left:4%; padding:20px 20px 0 0">
+				<button class="w3-btn w3-signal-grey w3-round" onclick="javascript:history.back()">Takaisin</button>
 			</div>
-	<div class="w3-container w3-center" style="margin:0 auto;">
-	<div class="w3-card-4" style="width:50%; margin:0 auto;">
-	<div class="w3-container">
-		<form class="w3-container w3-padding-32" th:object="${room}" th:action="@{save}" action="#" method="post">
+	<div class="container">
+		<form th:object="${room}" th:action="@{save}" action="#" method="post">
+		  	<div class="row">
+      			<div class="col-25">
 		  	<label for="name">Paikan nimi</label>
-			<input type="text" required id="name" size="30px" th:field="*{name}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
+		  	</div>
+      			<div class="col-75">
+			<input type="text" required id="name"  th:field="*{name}" />
+			</div>
+    		</div>
+		    <div class="row">
+		     	<div class="col-25">
 		  	<label for="capacity">Tilavuus</label>
+		  	</div>
+      			<div class="col-75">
 			<input type="number" min="0" id="capacity" size="30px" th:field="*{capacity}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
+			</div>
+    		</div>
+		    <div class="row">
+		     	<div class="col-25">
 		  	<label for="free">Vapaita paikkoja</label>
+		  	</div>
+      			<div class="col-75">
 			<input type="number" min="0" id="free" th:field="*{free}" />
-			<div style="clear: both; display: block; height: 10px;"></div>
+			</div>
+    		</div>
+		    <div class="row">
+		     	<div class="col-25">
 			<label for="roomKindlist">Paikan tyyppi</label>
-			<select id="roomKindlist" th:field="*{roomKind}" style="width:300px;">
+			</div>
+      			<div class="col-75">
+			<select id="roomKindlist" th:field="*{roomKind}" >
        		<option th:each="roomKind: ${roomKinds}" th:value="${roomKind.roomKindId}" th:text="${roomKind.name}"></option>
     		</select>
-			<div  style="clear: both; display: block; height: 10px;"></div>
-			<input class="w3-btn w3-blue w3-round-large" id="button" type="submit" value="Tallenna" style="width:100px;" ></input>
+			</div>
+    		</div>
+		    <div class="row">
+		     	
+			<input class="w3-btn w3-green w3-round-large" id="button" type="submit" value="Tallenna"  ></input>
+			</div>
 		</form>
 	</div>
 	</div>
-	</div>
-	</div>
+	
  <!-- Alatunniste-->
   <footer class="w3-center w3-row-padding w3-padding-32  w3-teema-d1" style="margin-top:20px">
           

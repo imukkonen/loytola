@@ -1,30 +1,104 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Edit animal</title>
+    <title>Muokata eläin</title>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
-<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-signal.css">
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 <style>
 body,h1,h2,h3,h4,h6 {font-family: "Karma", sans-serif}
 h5 {font-family: "Tangerine", serif}
 .w3-bar-block .w3-bar-item {padding:20px}
 .w3-myfont {font-family: "Comic Sans MS", cursive, sans-serif}
 .w3-teema-d1 {color:#fff !important;background-color:#3949ab !important}
-input {
-  width: 50%;
-  hight: 30px;
+* {
+    box-sizing: border-box;
 }
-label {	display: inline-block;
-				width: 8em;
-				font-family: verdana;
-				font-size: 12px;
-                vertical-align:top;
-                text-align: right;
-				}
+
+input[type=text], input[type=datetime], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+    float: right;
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 50px;
+    width: 65%;
+}
+
+.col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#logo {
+	font-size: 64px;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+#logo {
+    	font-size: 36px;
+    	margin-bottom: 20px;
+    	padding-top: 20px;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+    #logo {
+    	font-size: 18px;
+    	margin-bottom: 50px;
+    	padding-top: 20px;
+    }
+}
+
 
 </style>
  	
@@ -45,9 +119,9 @@ label {	display: inline-block;
   	<a href="/acceptanimallist" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Löydetyt eläimet</a>
   	<a href="/acceptdisappearlist" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Kadotetut eläimet</a>
   </div>
-  <a href="/find" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Hae tyypillä</a>
+  <a href="/find" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Hae lajilla</a>
   <a href="/addanimal" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Uusi eläin</a>
-    <a href="/contacts" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Yhteystiedot</a>
+  <a href="/contacts" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Yhteystiedot</a>
   <div sec:authorize="isAnonymous()">
   	<a href="/login" onclick="w3_close()" class="w3-bar-item w3-button w3-teema-d1">Kirjaudu sisään</a>
   </div>
@@ -61,13 +135,13 @@ label {	display: inline-block;
 
 <!-- Ylävalikko -->
 <div class="w3-top">
-  <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
-    <div class="w3-button w3-padding-16	w3-right" onclick="w3_open()">☰</div>
-    <div class="w3-left w3-padding-12"  onclick="w3_open()"><img src="/pictures/logo.jpg" alt="Logo" style="display:block;margin:auto" width="100" height="90"></div>
-    <div class="w3-center w3-padding-12 w3-jumbo"><b>Löytöeläinkoti</b>
+  <div class="w3-white w3-xlarge" style="width:90%; margin:auto">
+    <div class="w3-button w3-right" onclick="w3_open()">☰</div>
+    <div class="w3-left"  onclick="w3_open()"><img src="/pictures/logo.jpg" alt="Logo" style="display:block;margin:auto" width="100" height="90"></div>
+    <div id="logo" class="w3-center w3-padding-12"><b>Löytöeläinkoti</b>
     </div>
 	<div class="w3-center w3-padding-12 w3-medium w3-teema-d1"><b>Pääkaupunkiseudun löytöeläimet</b></div>
-  <div sec:authorize="isAuthenticated()" class="w3-small w3-right w3-text-white" style="margin-top:-30px;"  >
+  <div sec:authorize="isAuthenticated()" class="w3-small w3-right w3-text-white" style="margin-top:-20px;"  >
 				<p th:inline="text">Tervetuloa [[${#httpServletRequest.remoteUser}]]</p><br>
 		</div>
   </div>
@@ -76,63 +150,112 @@ label {	display: inline-block;
 	
 <div class="w3-center w3-padding-64" style="margin-top:80px; margin-bottom:0">
 	<h5 class="w3-jumbo w3-text-indigo">Muokata eläimen tietoja</h5>
-	<div class="w3-left" style="margin-top: -80px; margin-left:80px; padding:20px 20px 0 0">
-				<button class="w3-btn w3-indigo w3-small w3-round-large" onclick="javascript:history.back()">Takaisin</button>
+	<div class="w3-left" style="margin-top: -80px; margin-left:4%; padding:20px 20px 0 0">
+				<button class="w3-btn w3-signal-grey w3-round" onclick="javascript:history.back()">Takaisin</button>
 			</div>
-	<div class="w3-container w3-center" style="margin:0 auto;">
-	<div class="w3-card-4" style="width:50%; margin:0 auto;">
-	<div class="w3-container">
-		<form class="w3-container w3-padding-32" th:object="${animal}" th:action="@{/saveanimal}" action="#" method="post">
-		  	<label for="theme">Asia</label>
-		  	<select  id="theme" th:field="*{theme}" class="form-control" style="width:300px;">
-	       		<option th:value=1>Löytänyt</option>
-	       		<option th:value=0>Kadonnut</option>
-    		</select>
-			<div  style="clear: both; display: block; height: 10px;"></div>
-		  	<label for="name">Eläimen nimi (tunnus)</label>
-			<input type="text" id="name" size="30px" th:field="*{name}" required/>
-			<div style="clear: both; display: block; height: 10px;"></div>
-			<label for="animalKindlist">Eläimen laiji</label>
-			<select id="animalKindlist" th:field="*{animalKind}" class="form-control" style="width:300px;">
+	<div class="container">
+		<form  th:object="${animal}" th:action="@{/saveanimal}" action="#" method="post">
+		  	<div class="row">
+      			<div class="col-25">
+		  			<label for="theme">Asia</label>
+		  		</div>
+		  		<div class="col-75">
+				  	<select  id="theme" th:field="*{theme}" >
+			       		<option th:value=1>Löytänyt</option>
+			       		<option th:value=0>Kadonnut</option>
+		    		</select>
+		    	</div>
+			</div>
+			<div class="row">
+      			<div class="col-25">
+		  			<label for="name">Eläimen nimi (tunnus)</label>
+		  		</div>
+		  		<div class="col-75">
+					<input type="text" id="name"  th:field="*{name}" required/>
+				</div>
+			</div>
+			<div class="row">
+			<div class="col-25">
+				<label for="animalKindlist">Eläimen laiji</label>
+			</div>
+		  		<div class="col-75">
+			<select id="animalKindlist" th:field="*{animalKind}" >
        		<option th:each="animalKind: ${animalKinds}" th:value="${animalKind.animalKindId}" th:text="${animalKind.name}"></option>
     		</select>
-			<div  style="clear: both; display: block; height: 10px;"></div>
+			</div>
+			</div>
+			<div class="row">
+			<div class="col-25">
 			<label for="breed">Rotu</label>
-			<select id="breed" th:field="*{breed}" class="form-control" style="width:300px;">
+			</div>
+		  		<div class="col-75">
+			<select id="breed" th:field="*{breed}"  >
        		<option th:each="breed: ${breeds}" th:value="${breed.breedId}" th:text="${breed.name}"></option>
     		</select>
-			<div  style="clear: both; display: block; height: 10px;"></div>
+			</div>
+			</div>
+			<div class="row">
+			<div class="col-25">
 			<label for="sexlist">Sukupuoli</label>
-			<select id="sex" th:field="*{sex}" class="form-control" style="width:300px;">
+			</div>
+		  		<div class="col-75">
+			<select id="sex" th:field="*{sex}" >
        		<option th:each="sex: ${sexs}" th:value="${sex.sexId}" th:text="${sex.name}"></option>
     		</select>
-			<div  style="clear: both; display: block; height: 10px;"></div>
+			</div>
+			</div>
+			<div class="row">
+			<div class="col-25">
 			<label for="descriptiot">Kuvaus</label>
-			<textarea cols ="32" rows="3" id="description" size="30px" th:field="*{description}" /></textarea>
-			<div style="clear: both; display: block; height: 10px;"></div>
+			</div>
+		  		<div class="col-75">
+			<textarea cols ="32" rows="3" id="description" th:field="*{description}" /></textarea>
+			</div>
+			</div>
+			<div class="row">
+			<div class="col-25">
 		  	<label for="foundDate">Päivä</label>
+		  	</div>
+		  		<div class="col-75">
 			<input type="datetime" th:field="*{foundDate}" required pattern="([0-2][0-9]|[3][0-1])-(0[1-9]|1[0-2])-201[89]"/>
 			<div class="w3-myfont w3-text-indigo w3-small" style="margin-left:35px;">Päivämäärä muodossa dd-mm-201y</div>
-			<div style="clear: both; display: block; height: 10px;"></div>
+			</div>
+			</div>
+			<div class="row">
+			<div class="col-25">
 			<label for="uname">Ilmoittajan nimi</label>
+			</div>
+		  		<div class="col-75">
 			<input type="text" th:field="*{uname}" pattern="^[a-zA-Z\s]+$" />
-			<div style="clear: both; display: block; height: 10px;"></div>
+			</div>
+			</div>
+			<div class="row">
+			<div class="col-25">
 			<label for="phone">Puhelin</label>
+			</div>
+		  		<div class="col-75">
 			<input type="text" th:field="*{phone}" pattern="0[1-9][0-9]{8}"/>
 			<div class="w3-myfont w3-text-indigo w3-small" style="margin-left:35px;">Puhelinnumero muodossa 0xxxxxxxxx</div>
-			<div style="clear: both; display: block; height: 10px;"></div>
+			</div>
+			</div>
+			<div class="row">
+			<div class="col-25">
 			<label for="roomlist">Sijoituspaikka</label>
-			
-			<select id="roomlist"  th:field="*{room}" class="form-control" style="width:300px;">
+			</div>
+		  		<div class="col-75">
+			<select id="roomlist"  th:field="*{room}"  >
 			<option th:each="room: ${rooms}" th:value="${room.roomId}" th:text="${room.name}+' ('+ ${room.roomKind.name}+')'"></option>
     		</select>
-			<div  style="clear: both; display: block; height: 10px;"></div>
-			<input class="w3-btn w3-blue w3-round-large" id="button" type="submit" value="Tallenna" style="width:150px; float: center;"></input>
+			</div>
+			</div>
+			<div class="row">
+			
+			<input class="w3-btn w3-green w3-round-large" id="button" type="submit" value="Tallenna" ></input>
+			</div>
 		</form>
 	</div>
 	</div>
-	</div>
-	</div>
+	
  <!-- Alatunniste-->
   <footer class="w3-center w3-row-padding w3-padding-32  w3-teema-d1" style="margin-top:20px">
           

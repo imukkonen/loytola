@@ -15,7 +15,27 @@ h5 {font-family: "Tangerine", serif}
 .w3-bar-block .w3-bar-item {padding:20px}
 .w3-myfont {font-family: "Comic Sans MS", cursive, sans-serif}
 .w3-teema-d1 {color:#fff !important;background-color:#3949ab !important}
+#logo {
+	font-size: 64px;
+}
 
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+#logo {
+    	font-size: 36px;
+    	margin-bottom: 20px;
+    	padding-top: 20px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    
+    #logo {
+    	font-size: 18px;
+    	margin-bottom: 50px;
+    	padding-top: 20px;
+    }
+}
 </style>
 </head>
 <body>
@@ -51,7 +71,7 @@ h5 {font-family: "Tangerine", serif}
   <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
     <div class="w3-button w3-padding-16	w3-right" onclick="w3_open()">☰</div>
     <div class="w3-left w3-padding-12"  onclick="w3_open()"><img src="/pictures/logo.jpg" alt="Logo" style="display:block;margin:auto" width="100" height="90"></div>
-    <div class="w3-center w3-padding-12 w3-jumbo"><b>Löytöeläinkoti</b>
+    <div id="logo" class="w3-center w3-padding-12"><b>Löytöeläinkoti</b>
     </div>
 	<div class="w3-center w3-padding-12 w3-medium w3-teema-d1"><b>Pääkaupunkiseudun löytöeläimet</b></div>
   <div sec:authorize="isAuthenticated()" class="w3-small w3-right w3-text-white" style="margin-top:-20px;"  >
@@ -67,7 +87,7 @@ h5 {font-family: "Tangerine", serif}
 			<h5 class="w3-jumbo w3-text-indigo">Sijoituspaikan <spin th:text="${room.name}"></spin> eläinten lista</h5>
 		
 		<div class="w3-left" style="margin-top: -80px; margin-left:80px; padding:20px 20px 0 0">
-				<button class="btn btn-sm btn-primary" onclick="javascript:history.back()">Takaisin</button>
+				<button class="w3-btn w3-signal-grey w3-round" onclick="javascript:history.back()">Takaisin</button>
 			</div>
 		
 	
