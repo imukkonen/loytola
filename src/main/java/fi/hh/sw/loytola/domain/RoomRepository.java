@@ -12,4 +12,5 @@ public interface RoomRepository extends CrudRepository<Room, Long>{
 	List<Room> findByName(@Param("name") String name);
 	int free=0;
 	List<Room> findByFreeGreaterThan(int free);	
+	List<Room> findByFreeGreaterThanAndRoomKind(int free, RoomKind kind);
 }

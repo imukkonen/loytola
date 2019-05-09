@@ -57,6 +57,12 @@ public class AnimalController {
 	public String getNewAnimalForm(Model model) {
 				return "index";//linkki index.html
 	}
+	
+	@RequestMapping(value = "/contacts", method = RequestMethod.GET)
+	public String showContacts(Model model) {
+				return "contacts";//linkki contacts.html
+	}
+	
 	//login
 			@RequestMapping(value="/login")
 		    public String login() {	
@@ -192,25 +198,7 @@ public class AnimalController {
     	return "animallist";
     }
 	
-	
-	
-	@RequestMapping(value="/rooms", method = RequestMethod.GET)
-    public @ResponseBody List<Room> roomListRest() {	
-        return (List<Room>) rrepository.findAll(); //Restful kaikki eläinpaikat
-    }   
-	
-	@RequestMapping(value="/restanimals", method = RequestMethod.GET)
-    public @ResponseBody List<Animal> animalListRest() {	
-        return (List<Animal>) arepository.findAll(); //Restful kaikki eläinpaikat
-    }   
-	
- 
-    @RequestMapping(value="/room/{id}", method = RequestMethod.GET)
-    public @ResponseBody Optional<Room> findRoomRest(@PathVariable("id") Long roomId) {	
-    	return rrepository.findById(roomId); // Restful löytää eläinpaikka id-tunnuksella
-    }    
-
-    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String editRoom(@PathVariable("id") Long roomId, Model model) {
     	model.addAttribute("room", rrepository.findById(roomId));
     	Room room=this.rrepository.findById(roomId).get();
@@ -218,6 +206,38 @@ public class AnimalController {
     	model.addAttribute("roomKinds", rkrepository.findAll());
     	return "editroom";
     }
+	
+	// Rest metods
+	
+	@RequestMapping(value="/api/rooms", method = RequestMethod.GET)
+    public @ResponseBody List<Room> roomListRest() {	
+        return (List<Room>) rrepository.findAll(); //Restful kaikki eläinpaikat
+    }   
+	
+	@RequestMapping(value="/api/restanimals", method = RequestMethod.GET)
+    public @ResponseBody List<Animal> animalListRest() {	
+        return (List<Animal>) arepository.findAll(); //Restful kaikki eläimet
+    }  
+	
+	@RequestMapping(value="/api/restfounds", method = RequestMethod.GET)
+    public @ResponseBody List<Animal> foundsListRest() {	
+        return (List<Animal>) arepository.findByTheme(1);//Restful kaikki löydetyt eläimet
+    } 
+	
+	@RequestMapping(value="/api/restdisaps", method = RequestMethod.GET)
+    public @ResponseBody List<Animal> disapssListRest() {	
+        return (List<Animal>) arepository.findByTheme(0);//Restful kaikki löydetyt eläimet
+    } 
+	
+	@RequestMapping(value="/restanimals/{id}", method = RequestMethod.GET)
+    public @ResponseBody Optional<Animal> findAnimalRest(@PathVariable("id") Long animalId) {	
+    	return arepository.findById(animalId); // Restful löytää eläin id-tunnuksella
+    }   
+ 
+    @RequestMapping(value="/room/{id}", method = RequestMethod.GET)
+    public @ResponseBody Optional<Room> findRoomRest(@PathVariable("id") Long roomId) {	
+    	return rrepository.findById(roomId); // Restful löytää eläinpaikka id-tunnuksella
+    }    
 	
 	
 }
