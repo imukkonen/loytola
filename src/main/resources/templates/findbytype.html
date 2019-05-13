@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <title>Search</title>
+    <title>Hae lajilla</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,8 +15,12 @@ h5 {font-family: "Tangerine", serif}
 .w3-bar-block .w3-bar-item {padding:20px}
 .w3-myfont {font-family: "Comic Sans MS", cursive, sans-serif}
 .w3-teema-d1 {color:#fff !important;background-color:#3949ab !important}
-input {
+input[type=text] {
   width: 150px;
+  hight: 30px;
+}
+select {
+width: 150px;
   hight: 30px;
 }
 label {	display: inline-block;
@@ -96,14 +100,16 @@ label {	display: inline-block;
 	
 <div class="w3-center w3-padding-64 " style="margin-top:80px; margin-bottom:0">
 				<h5 class="w3-jumbo w3-text-indigo">Hae eläimet lajilla</h5>
-		<div class="w3-left" style="margin-top: -80px; margin-left:4%; padding:20px 20px 0 0">
+		<div class="w3-left" style="margin-top: -130px; margin-left:4%; padding:20px 20px 0 0">
 				<button class="w3-btn w3-signal-grey w3-small w3-round" onclick="javascript:history.back()">Takaisin</button>
 			</div>
 	  <br />
-	<div class="container">
+	<div class="w3-container w3-center" style="margin:0 auto;">
+	<div class="w3-card-4" style="width:300px; margin:0 auto; padding:25px 0;">
+	<div class="w3-container">
 		<form th:object="${kind}" th:action="@{findbytype}" action="#" method="get">
      	
-     	<label for="animalKindlist">Eläimen laji</label> <select  id="animalKindlist" name="list" >
+     	<label for="animalKindlist">Eläimen laji:</label>  <select  id="animalKindlist" name="list" >
 			<option th:each="animalKind: ${animalKinds}" th:value="${animalKind.animalKindId}" th:text="${animalKind.name}"></option>
     	</select>
     	<div style="clear: both; display: block; height: 10px;"></div>
@@ -112,6 +118,9 @@ label {	display: inline-block;
      </form>
 	</div>
 	</div>
+	</div>
+	</div>
+	
 	
 	
 	<!-- Alatunniste-->
