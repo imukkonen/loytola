@@ -95,9 +95,9 @@ h5 {font-family: "Tangerine", serif}
 	<div class="w3-responsive">
       <table class="w3-table  w3-bordered w3-small" style="width:90%; margin:0 auto;">
 		<tr class="w3-myfont w3-signal-grey">
-	
+			<th>Asia</th>
 		    <th>Tunnus</th>
-		    <th>Eläin laji<th>
+		    <th>Eläin laji</th>
 		    <th>Rotu</th>
 		    <th>Sukupuoli</th>
 		    <th>Kuvaus</th>
@@ -109,6 +109,8 @@ h5 {font-family: "Tangerine", serif}
 		    <th sec:authorize="hasAuthority('ADMIN')">Muokata</th>
 		</tr>  
     	<tr class="w3-myfont" th:each = "animal : ${animals}">
+    		<td><span th:if="${animal.theme}==0">Kadonnut</span>
+    			<span th:if="${animal.theme}==1">Löytänyt</span></td>
     		<td th:text="${animal.name}"></td>
     		<td th:text="${animal.animalKind.name}"></td>
     		<td th:text="${animal.breed.name}"></td>

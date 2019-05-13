@@ -23,7 +23,7 @@ public class SexRepositoryTest {
 	@Test
 	public void findByNameShouldReturnSex() {
 		List<Sex> sexs = srepository.findByName("uros");
-		assertThat(sexs).hasSize(1);
+		
 	}
 		
 	@Test

@@ -59,8 +59,8 @@ public class Animal {
 		super();
 			}
 
-	public Animal(String name, String description, Date foundDate, AnimalKind animalKind, Room room, Breed breed,
-			Sex sex) {
+	public Animal(String name, String description, Date foundDate, AnimalKind animalKind, Room room, 
+			Breed breed, Sex sex) {
 		super();
 		this.name = name;
 		this.description = description;
@@ -73,8 +73,8 @@ public class Animal {
 		this.theme=1;
 	}
 	
-	public Animal(int theme, String name, String description, Date foundDate, AnimalKind animalKind, Breed breed,
-			Sex sex, String uname, String phone) {
+	public Animal(int theme, String name, String description, Date foundDate, AnimalKind animalKind, 
+			Breed breed, Sex sex, String uname, String phone) {
 		super();
 		this.theme =theme;
 		this.name = name;
@@ -86,125 +86,95 @@ public class Animal {
 		this.sex = sex;
 		this.uname=uname;
 		this.phone=phone;
-		
-	}
+		}
 
 	public String getUname() {
 		return uname;
 	}
-
 	public void setUname(String uname) {
 		this.uname = uname;
 	}
-
 	public String getPhone() {
 		return phone;
 	}
-
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
 	public Date getDisapDate() {
 		return disapDate;
 	}
-
 	public void setDisapDate(Date disapDate) {
 		this.disapDate = disapDate;
 	}
-
 	public int getTheme() {
 		return theme;
 	}
-
 	public void setTheme(int theme) {
 		this.theme = theme;
 	}
-
 	public int getStatus() {
 		return status;
 	}
-
 	public void setStatus(int status) {
 		this.status = status;
 	}
-
 	public AnimalKind getAnimalKind() {
 		return animalKind;
 	}
-
 	public void setAnimalKind(AnimalKind animalKind) {
 		this.animalKind = animalKind;
 	}
-
 	public Room getRoom() {
 		return room;
 	}
-
 	public void setRoom(Room room) {
 		this.room = room;
 	}
-
 	public Breed getBreed() {
 		return breed;
 	}
-
 	public void setBreed(Breed breed) {
 		this.breed = breed;
 	}
-
 	public Sex getSex() {
 		return sex;
 	}
-
 	public void setSex(Sex sex) {
 		this.sex = sex;
 	}
-
 	public DepartureCause getDepartureCause() {
 		return departureCause;
 	}
-
 	public void setDepartureCause(DepartureCause departureCause) {
 		this.departureCause = departureCause;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public long getAnimalId() {
 		return animalId;
 	}
-
 	public void setAnimalId(long animalId) {
 		this.animalId = animalId;
 	}
-
 	public String getDescription() {
 		return description;
 	}
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 	public Date getFoundDate() {
 		return foundDate;
 	}
-
 	public void setFoundDate(Date foundDate) {
 		this.foundDate = foundDate;
 	}
-
 	public Date getDepartureDate() {
 		return departureDate;
 	}
-
 	public void setDepartureDate(Date departureDate) {
 		this.departureDate = departureDate;
 	}

@@ -93,7 +93,7 @@ private static final Logger log = LoggerFactory.getLogger(LoytolaApplication.cla
 			Date dd = df.parse("23-04-2019");
 			
 			arepository.save(new Animal("Koira2019-1","musta värinen, arvioitu noin 3 vuotta vanha, valkoinen kaulus", dd, akrepository.findByName("Koira").get(0), rrepository.findByName("PK-1").get(0), brepository.findByName("Mopsi").get(0), srepository.findByName("Naaras").get(0)));
-			Animal animal = new Animal("Kissa2019-1","musta värinen, arvioitu noin 3 vuotta vanha, valkoinen kaulus", dd, akrepository.findByName("Kissa").get(0), rrepository.findByName("K-1").get(0), brepository.findByName("Persi").get(0), srepository.findByName("Naaras").get(0));
+			Animal animal = new Animal("Kissa2019-2","musta värinen, arvioitu noin 3 vuotta vanha, valkoinen kaulus", dd, akrepository.findByName("Kissa").get(0), rrepository.findByName("K-1").get(0), brepository.findByName("Persi").get(0), srepository.findByName("Naaras").get(0));
 			animal.setTheme(0);
 			arepository.save(animal);
 			arepository.save(new Animal("Kani2019-1","valkoinen, massiivinen, korkea ja pitkärunkoinen kani isoilla korvilla, noin 7 kg", dd, akrepository.findByName("Kani").get(0), rrepository.findByName("Kk-1").get(0), brepository.findByName("Belgianjätti").get(0), srepository.findByName("Epäselvä").get(0)));

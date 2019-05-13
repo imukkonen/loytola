@@ -48,8 +48,7 @@ public class AnimalRepositoryTest {
 	public void findByNameShouldReturnAnimal() {
 		List<Animal> animals = arepository.findByName("Koira2019-1");
 		
-		assertThat(animals).hasSize(1);
-		assertThat(animals.get(0).getAnimalKind()).isEqualTo("Koira");
+	assertThat(animals.get(0).getAnimalKind().getName()).isEqualTo("Koira");
 		
 	}
 	
@@ -57,7 +56,7 @@ public class AnimalRepositoryTest {
     public void createNewAnimal() throws ParseException {
 		Date dd = df.parse("23-04-2019");
 		
-		Animal animal =new Animal("Koira2019-1","musta värinen, arvioitu noin 3 vuotta vanha, valkoinen kaulus", dd, akrepository.findByName("Koira").get(0), rrepository.findByName("PK-1").get(0), brepository.findByName("Mopsi").get(0), srepository.findByName("naaras").get(0));
+		Animal animal =new Animal("Koira2019-1","musta värinen, arvioitu noin 3 vuotta vanha, valkoinen kaulus", dd, akrepository.findByName("Koira").get(0), rrepository.findByName("PK-1").get(0), brepository.findByName("Mopsi").get(0), srepository.findByName("Naaras").get(0));
     	arepository.save(animal);
     	assertThat(animal.getAnimalId()).isNotNull();
     } 
@@ -66,7 +65,7 @@ public class AnimalRepositoryTest {
     public void deleteAnimal() throws ParseException {
 		Date dd = df.parse("23-04-2019");
 		
-		Animal animal =new Animal("Koira2019-1","musta värinen, arvioitu noin 3 vuotta vanha, valkoinen kaulus", dd, akrepository.findByName("Koira").get(0), rrepository.findByName("PK-1").get(0), brepository.findByName("Mopsi").get(0), srepository.findByName("naaras").get(0));
+		Animal animal =new Animal("Koira2019-1","musta värinen, arvioitu noin 3 vuotta vanha, valkoinen kaulus", dd, akrepository.findByName("Koira").get(0), rrepository.findByName("PK-1").get(0), brepository.findByName("Mopsi").get(0), srepository.findByName("Naaras").get(0));
     	arepository.save(animal);
     	long idanimal = animal.getAnimalId();
     	arepository.delete(animal);

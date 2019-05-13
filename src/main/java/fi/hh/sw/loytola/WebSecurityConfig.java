@@ -22,13 +22,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-        .authorizeRequests().antMatchers("/css/**", "/index", "/accept*/", "/addanimal", "/h2*").permitAll() // Enable css when logged out
+        .authorizeRequests().antMatchers("/css/**", "/index", "/accept*/", "/addanimal", "/pictures/*", "/animallist", "findbytype").permitAll() // Enable css when logged out
+        .and()
+        .authorizeRequests().antMatchers("/admin", "/h2_console/**").hasAuthority("ADMIN")
         .and()
         .authorizeRequests().antMatchers("/delete*/*").hasAuthority("ADMIN")
         .and()
         .authorizeRequests().antMatchers("/edit*/*").hasAuthority("ADMIN")
         .and()
         .authorizeRequests().antMatchers("/*room*").hasAuthority("ADMIN")
+        .and().csrf().ignoringAntMatchers("/h2-console/**")
         /*
         .and()
         .authorizeRequests().anyRequest().authenticated()
@@ -43,6 +46,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       .logout()
       		.logoutSuccessUrl("/index")
       		.permitAll();
+        http.exceptionHandling().accessDeniedPage("/403");
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
     }
     
 

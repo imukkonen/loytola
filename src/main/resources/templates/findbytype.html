@@ -15,69 +15,17 @@ h5 {font-family: "Tangerine", serif}
 .w3-bar-block .w3-bar-item {padding:20px}
 .w3-myfont {font-family: "Comic Sans MS", cursive, sans-serif}
 .w3-teema-d1 {color:#fff !important;background-color:#3949ab !important}
-* {
-    box-sizing: border-box;
+input {
+  width: 150px;
+  hight: 30px;
 }
-
-input[type=text], input[type=datetime], input[type=number], select, textarea {
-    width: 75%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    resize: vertical;
-}
-
-label {
-    padding: 12px 12px 12px 0;
-    display: inline-block;
-    float: right;
-}
-
-input[type=submit] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    float: right;
-    margin-top:10px;
-    margin-right:20%;
-}
-#lbtn {
-float: center;}
-
-input[type=submit]:hover {
-    background-color: #45a049;
-    
-}
-
-.container {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 40px;
-    width: 40%;
-}
-
-.col-25 {
-    float: left;
-    width: 25%;
-    margin-top: 6px;
-}
-
-.col-75 {
-    float: left;
-    width: 75%;
-    margin-top: 6px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
+label {	display: inline-block;
+				width: 9em;
+				font-family: verdana;
+				font-size: 12px;
+                vertical-align:center;
+                text-align: right;
+				}
 #logo {
 	font-size: 64px;
 }
@@ -91,18 +39,13 @@ input[type=submit]:hover {
     }
 
 }
-@media screen and (max-width: 400px) {
-    .col-25, .col-75, input[type=submit] {
-        width: 100%;
-        margin-top: 0;
-    }
+
+@media screen and (max-width: 600px) {
+    
     #logo {
     	font-size: 18px;
     	margin-bottom: 50px;
     	padding-top: 20px;
-    }
-    .container {
-    	width:100%;
     }
 }
 </style>
@@ -153,24 +96,19 @@ input[type=submit]:hover {
 	
 <div class="w3-center w3-padding-64 " style="margin-top:80px; margin-bottom:0">
 				<h5 class="w3-jumbo w3-text-indigo">Hae eläimet lajilla</h5>
-		<div class="w3-left" style="margin-top: -80px; margin-left:80px; padding:20px 20px 0 0">
+		<div class="w3-left" style="margin-top: -80px; margin-left:4%; padding:20px 20px 0 0">
 				<button class="w3-btn w3-signal-grey w3-small w3-round" onclick="javascript:history.back()">Takaisin</button>
 			</div>
 	  <br />
 	<div class="container">
 		<form th:object="${kind}" th:action="@{findbytype}" action="#" method="get">
-     	<div class="row">
-      			<div class="col-25">
-     	<label for="animalKindlist">Eläimen laji</label>
-     	</div>
-      			<div class="col-75">
-		<select  id="animalKindlist" name="list" >
+     	
+     	<label for="animalKindlist">Eläimen laji</label> <select  id="animalKindlist" name="list" >
 			<option th:each="animalKind: ${animalKinds}" th:value="${animalKind.animalKindId}" th:text="${animalKind.name}"></option>
     	</select>
-    	</div>
-    	<div class="row">
+    	<div style="clear: both; display: block; height: 10px;"></div>
     	<input class="w3-btn w3-green w3-rounded" id="button" type="submit" value="Hae" ></input>
-    	</div>
+    	
      </form>
 	</div>
 	</div>
